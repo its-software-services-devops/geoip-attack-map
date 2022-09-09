@@ -3,6 +3,32 @@ entries:
   geoip-attack-map:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2022-09-09T09:05:51.129477242Z"
+    dependencies:
+    - alias: attack-map-server
+      condition: attack-map-server.enabled
+      name: generic-app
+      repository: https://charts.visonneau.fr/
+      version: 0.0.14
+    - alias: attack-map-feeder
+      condition: attack-map-feeder.enabled
+      name: generic-app
+      repository: https://charts.visonneau.fr/
+      version: 0.0.14
+    - alias: redis
+      condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.1.4
+    description: A Helm chart for GeoIP Attack Map
+    digest: c6ebcaade751160e721549e6ada92f8aa99c69faaf4be39167a50edb4cd78f17
+    name: geoip-attack-map
+    type: application
+    urls:
+    - https://its-software-services-devops.github.io/geoip-attack-map/geoip-attack-map-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2022-09-09T08:58:57.541490136Z"
     dependencies:
     - alias: attack-map-server
@@ -27,4 +53,4 @@ entries:
     urls:
     - https://its-software-services-devops.github.io/geoip-attack-map/geoip-attack-map-1.0.0.tgz
     version: 1.0.0
-generated: "2022-09-09T08:58:57.533212624Z"
+generated: "2022-09-09T09:05:51.120983535Z"
