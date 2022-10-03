@@ -447,33 +447,41 @@ function handleLegendType(msg) {
     }
 }
 
-// WEBSOCKET STUFF
-
 webSock.onmessage = function (e) {
     console.log("Got a websocket message...");
     try {
         var msg = JSON.parse(e.data);
         console.log(msg);
-        switch(msg.type) {
-        case "Traffic":
-            console.log("Traffic!");
-            var srcLatLng = new L.LatLng(msg.src_lat, msg.src_long);
-            var hqPoint = map.latLngToLayerPoint(hqLatLng);
-            var srcPoint = map.latLngToLayerPoint(srcLatLng);
-            console.log('');
-            addCircle(msg, srcLatLng);
-            handleParticle(msg, srcPoint);
-            handleTraffic(msg, srcPoint, hqPoint, srcLatLng);
-            handleLegend(msg);
-            handleLegendType(msg)
-            break;
-        // Add support for other message types?
+        switch (msg.type) {
+            case "Traffic":
+                console.log("Traffic!");
+                var srcLatLng = new L.LatLng(msg.src_lat, msg.src_long);
+                var hqPoint = map.latLngToLayerPoint(hqLatLng);
+                var srcPoint = map.latLngToLayerPoint(srcLatLng);
+                console.log('');
+                addCircle(msg, srcLatLng);
+                handleParticle(msg, srcPoint);
+                handleTraffic(msg, srcPoint, hqPoint, srcLatLng);
+                handleLegend(msg);
+                handleLegendType(msg)
+                break;
+            // Add support for other message types?
         }
-    } catch(err) {
-        console.log(err)
+    } catch (err) {
+        console.log("connect socket", err)
+        setTimeout(bindEvents, 1000);
     }
 };
 
+function bindEvents() {
+    try {
+        webSock.onopen = function () {
+            console.log('onopen called');
+        };
+    } catch (err) {
+        console.log("open socket", err)
+    }
+}
 $(document).on("click","#informIP #exit", function (e) {
     $("#informIP").hide();      
 });
