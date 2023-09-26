@@ -115,10 +115,11 @@ def get_tcp_udp_proto(src_port, dst_port):
     src_port = int(src_port)
     dst_port = int(dst_port)
 
-    if src_port in PORTMAP:
-        return PORTMAP[src_port]
     if dst_port in PORTMAP:
         return PORTMAP[dst_port]
+
+    if src_port in PORTMAP:
+        return PORTMAP[src_port]
 
     return "OTHER"
 
@@ -138,6 +139,24 @@ def find_hq_lat_long(hq_ip):
         print('Please provide a valid IP address for headquarters')
         exit()
 
+def find_dst_lat_long(dst_ip):
+    dst_ip_db_unclean = parse_maxminddb(db_path, dst_ip)
+    if dst_ip_db_unclean:
+        dst_ip_db_clean = clean_db(dst_ip_db_unclean)
+
+        if not dst_ip_db_clean:
+            return None
+
+        dst_lat = dst_ip_db_clean['latitude']
+        dst_long = dst_ip_db_clean['longitude']
+        dst_dict = {
+                'dst_lat': dst_lat,
+                'dst_long': dst_long
+                }
+        return dst_dict
+    else:
+        print('Please provide a valid IP address for the destination')
+        return None
 
 def parse_maxminddb(db_path, ip):
     try:
@@ -298,12 +317,17 @@ def main():
             where = syslog_file.tell()
             line = syslog_file.readline()
             if not line:
-                sleep(.1)
+                sleep(.05)
                 syslog_file.seek(where)
             else:
                 syslog_data_dict = parse_syslog(line)
                 if syslog_data_dict:
                     ip_db_unclean = parse_maxminddb(db_path, syslog_data_dict['src_ip'])
+
+                    dst_dict = find_dst_lat_long(syslog_data_dict['dst_ip'])
+                    if not dst_dict:
+                        dst_dict = hq_dict
+
                     if ip_db_unclean:
                         event_count += 1
                         ip_db_clean = clean_db(ip_db_unclean)
@@ -317,7 +341,7 @@ def main():
                                                             syslog_data_dict['dst_port']
                                                             )}
                         super_dict = merge_dicts(
-                                                hq_dict,
+                                                dst_dict,
                                                 ip_db_clean,
                                                 msg_type,
                                                 msg_type2,
