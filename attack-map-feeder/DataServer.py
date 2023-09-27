@@ -314,13 +314,14 @@ def main():
     with io.open(syslog_path, "r", encoding='ISO-8859-1') as syslog_file:
         syslog_file.readlines()
         while True:
-            sleep(0.10)
+
             where = syslog_file.tell()
             line = syslog_file.readline()
-
             if not line:
+                sleep(.05)
                 syslog_file.seek(where)
             else:
+                sleep(.05)
                 syslog_data_dict = parse_syslog(line)
                 if syslog_data_dict:
                     ip_db_unclean = parse_maxminddb(db_path, syslog_data_dict['src_ip'])
