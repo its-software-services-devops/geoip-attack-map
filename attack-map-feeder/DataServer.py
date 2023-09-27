@@ -314,7 +314,6 @@ def main():
     with io.open(syslog_path, "r", encoding='ISO-8859-1') as syslog_file:
         syslog_file.readlines()
         while True:
-
             where = syslog_file.tell()
             line = syslog_file.readline()
             if not line:
