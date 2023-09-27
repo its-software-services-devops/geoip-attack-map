@@ -19,7 +19,7 @@ RUN find .
 
 ENV GEOIP_REDIS_HOST redis-master
 ENV GEOIP_HQ_IP 8.8.8.8
-ENV TZ=Asia/Bangkok
+ENV TZ Asia/Bangkok
 
 WORKDIR /app/attack-map-feeder
 ENTRYPOINT ["./start.bash"]
