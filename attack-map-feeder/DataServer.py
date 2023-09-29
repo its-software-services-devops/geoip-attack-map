@@ -320,7 +320,6 @@ def main():
                 sleep(.05)
                 syslog_file.seek(where)
             else:
-                sleep(.05)
                 syslog_data_dict = parse_syslog(line)
                 if syslog_data_dict:
                     ip_db_unclean = parse_maxminddb(db_path, syslog_data_dict['src_ip'])
