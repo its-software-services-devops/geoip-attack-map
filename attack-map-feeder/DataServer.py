@@ -371,7 +371,11 @@ def main():
                         super_dict['ip_to_code'] = ip_to_code
 
                         json_data = json.dumps(super_dict)
-                        redis_instance.publish('attack-map-production', json_data)
+                        try:
+                            redis_instance.publish('attack-map-production', json_data)
+                        except:
+                            print('Reconnect to Redis')
+                            redis_instance = connect_redis(redis_ip)
 
                         #if args.verbose:
                         #    print(ip_db_unclean)
