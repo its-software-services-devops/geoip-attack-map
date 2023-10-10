@@ -331,6 +331,12 @@ def main():
 
                     if ip_db_unclean:
                         event_count += 1
+
+                        if event_count > 100000:
+                            event_count = 0
+                            print('Reconnect to Redis because event_count reached limit')
+                            redis_instance = connect_redis(redis_ip)
+
                         ip_db_clean = clean_db(ip_db_unclean)
                         
                         msg_type = {'msg_type': get_msg_type()}
@@ -373,7 +379,7 @@ def main():
                         json_data = json.dumps(super_dict)
                         try:
                             result = redis_instance.publish('attack-map-production', json_data)
-                            print('Return code from Redis [{}]', result)
+                            print('Return code from Redis [{}]'.format(result))
                         except:
                             print('Reconnect to Redis')
                             redis_instance = connect_redis(redis_ip)
