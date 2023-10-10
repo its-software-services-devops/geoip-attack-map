@@ -333,9 +333,8 @@ def main():
                         event_count += 1
 
                         if event_count > 100000:
-                            event_count = 0
-                            print('Reconnect to Redis because event_count reached limit')
-                            redis_instance = connect_redis(redis_ip)
+                            print('Auto restarting the app...')
+                            exit()
 
                         ip_db_clean = clean_db(ip_db_unclean)
                         
