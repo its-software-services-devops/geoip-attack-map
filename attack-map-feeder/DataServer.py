@@ -372,17 +372,11 @@ def main():
 
                         json_data = json.dumps(super_dict)
                         try:
-                            redis_instance.publish('attack-map-production', json_data)
+                            result = redis_instance.publish('attack-map-production', json_data)
+                            print('Return code from Redis [{}]', result)
                         except:
                             print('Reconnect to Redis')
                             redis_instance = connect_redis(redis_ip)
-
-                        #if args.verbose:
-                        #    print(ip_db_unclean)
-                        #    print('------------------------')
-                        #    print(json_data)
-                        #    print('Event Count: {}'.format(event_count))
-                        #    print('------------------------')
 
                         print('Event Count: {}'.format(event_count))
                         print('------------------------')
