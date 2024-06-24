@@ -192,13 +192,15 @@ def parse_syslog(line):
         dst_port = data[3]
         type_attack = data[4]
         cve_attack = data[5]
+        site = data[6]
         data_dict = {
                     'src_ip': src_ip,
                     'dst_ip': dst_ip,
                     'src_port': src_port,
                     'dst_port': dst_port,
                     'type_attack': type_attack,
-                    'cve_attack': cve_attack
+                    'cve_attack': cve_attack,
+                    'site': site
                     }
         return data_dict
 
@@ -374,6 +376,7 @@ def main():
                         super_dict['event_time'] = event_time
                         super_dict['country_to_code'] = country_to_code
                         super_dict['ip_to_code'] = ip_to_code
+                        super_dict['site'] = syslog_data_dict['site']
 
                         json_data = json.dumps(super_dict)
                         try:

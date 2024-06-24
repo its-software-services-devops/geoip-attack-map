@@ -39,11 +39,19 @@ service_rgb = {
                 'OTHER':'#6600cc'
                 }
 
+site_rgb = {
+                'firewall_internet1':'#00ff00',
+                'firewall_internet2':'#ff0000',
+                'firewall_server':'#ff8000',
+                'firewall_dr':'#ffff00',
+                'firewall_mta':'#80ff00'
+            }
 
 class IndexHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
     def get(request):
-        request.render('index.html')
+        # TODO : Check a condition to use index2.html or index.html
+        request.render('index2.html')
 
 
 class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
@@ -103,10 +111,17 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
             msg_type3 = json_data['msg_type3']
         else:
             msg_type3 = None
+
         if 'protocol' in json_data:
             protocol = json_data['protocol']
         else:
             protocol = None
+
+        if 'site' in json_data:
+            site = json_data['site']
+        else:
+            site = None
+
         if 'src_ip' in json_data:
             src_ip = json_data['src_ip']
         else:
@@ -163,10 +178,13 @@ class WebSocketChatHandler(tornado.websocket.WebSocketHandler):
             postal_code = json_data['postal_code']
         else:
             postal_code = None
+        
+        # TODO : Check if color is based on 'protocol' or 'site'
         if protocol:
             color = service_rgb[protocol]
         else:
             color = '#000000'
+
         if 'event_count' in json_data:
             event_count = json_data['event_count']
         else:
