@@ -45,7 +45,7 @@ site_rgb = {
                 'firewall_server':'#ff8000',
                 'firewall_dr':'#ffff00',
                 'firewall_mta':'#80ff00',
-                'tap':'#ffaa00',
+                'tap':'#ffffff',
             }
 
 class IndexHandler(tornado.web.RequestHandler):
