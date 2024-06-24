@@ -22,6 +22,7 @@ ENV GEOIP_MAPBOX_TOKEN=please-change-here
 ENV GEOIP_LEGEND1 "RTARF(CGIA)"
 ENV GEOIP_LEGEND2 "Cyber GeoIP Attack"
 ENV GEOIP_IMAGE_PATH "/static/logocyberB.png"
+ENV DEMO_MODE "false"
 
 EXPOSE 8080
 
