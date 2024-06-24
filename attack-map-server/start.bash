@@ -10,4 +10,9 @@ sed -i "s#__GEOIP_LEGEND1__#${GEOIP_LEGEND1}#g" ${OUTPUT_FILE}
 sed -i "s#__GEOIP_LEGEND2__#${GEOIP_LEGEND2}#g" ${OUTPUT_FILE}
 sed -i "s#__GEOIP_IMAGE_PATH__#${GEOIP_IMAGE_PATH}#g" ${OUTPUT_FILE}
 
+OUTPUT_FILE=index2.html
+sed -i "s#__GEOIP_LEGEND1__#${GEOIP_LEGEND1}#g" ${OUTPUT_FILE}
+sed -i "s#__GEOIP_LEGEND2__#${GEOIP_LEGEND2}#g" ${OUTPUT_FILE}
+sed -i "s#__GEOIP_IMAGE_PATH__#${GEOIP_IMAGE_PATH}#g" ${OUTPUT_FILE}
+
 python3 -u AttackMapServer.py
