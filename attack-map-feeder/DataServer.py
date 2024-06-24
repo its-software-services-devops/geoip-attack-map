@@ -182,7 +182,7 @@ def parse_syslog(line):
     data = line[-1]
     data = data.split(',')
 
-    if len(data) != 6:
+    if len(data) != 7:
         print('NOT A VALID LOG')
         return False
     else:
