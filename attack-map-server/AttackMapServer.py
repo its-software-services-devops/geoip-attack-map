@@ -41,12 +41,12 @@ service_rgb = {
 
 site_rgb = {
                 'firewall_internet1':'#ffff00',
-                'firewall_internet2':'#ffff00',
+                'firewall_internet2':'#008cff',
                 'firewall_server':'#0000ff',
                 'firewall_dr':'#008cff',
                 'firewall_mta':'#ff0000',
                 'tap':'#ffffff',
-                '==unknown==':'#800020'
+                '==unknown==':'#0000ff'
             }
 
 class IndexHandler(tornado.web.RequestHandler):
