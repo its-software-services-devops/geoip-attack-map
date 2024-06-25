@@ -40,12 +40,13 @@ service_rgb = {
                 }
 
 site_rgb = {
-                'firewall_internet1':'#00ff00',
-                'firewall_internet2':'#ff0000',
-                'firewall_server':'#ff8000',
-                'firewall_dr':'#ffff00',
-                'firewall_mta':'#80ff00',
+                'firewall_internet1':'#ffff00',
+                'firewall_internet2':'#ffff00',
+                'firewall_server':'#0000ff',
+                'firewall_dr':'#008cff',
+                'firewall_mta':'#ff0000',
                 'tap':'#ffffff',
+                '==unknown==':'#800020'
             }
 
 class IndexHandler(tornado.web.RequestHandler):
