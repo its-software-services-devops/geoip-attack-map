@@ -3,7 +3,7 @@ entries:
   geoip-attack-map:
   - apiVersion: v2
     appVersion: "1.0"
-    created: "2024-06-25T13:59:07.994778225Z"
+    created: "2024-11-18T06:57:51.260366068Z"
     dependencies:
     - alias: attack-map-server
       condition: attack-map-server.enabled
@@ -21,7 +21,7 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 17.1.4
     description: A Helm chart for GeoIP Attack Map
-    digest: 5b622a33533ac9e3d1fecb22bf14854a1cac4487ea6cdfe9ae139fef4f4c4725
+    digest: 7f7c61381374653733e64514bf061ea355293d85e5462c2c1c982448203b507d
     name: geoip-attack-map
     type: application
     urls:
@@ -53,4 +53,4 @@ entries:
     urls:
     - https://its-software-services-devops.github.io/geoip-attack-map/geoip-attack-map-1.0.0.tgz
     version: 1.0.0
-generated: "2024-06-25T13:59:07.988808031Z"
+generated: "2024-11-18T06:57:51.254245165Z"
