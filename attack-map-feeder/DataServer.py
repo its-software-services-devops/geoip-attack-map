@@ -334,7 +334,7 @@ def main():
                     if ip_db_unclean:
                         event_count += 1
 
-                        if event_count > 100000:
+                        if event_count > 300000:
                             print('Auto restarting the app...')
                             exit()
 
